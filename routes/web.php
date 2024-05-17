@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
+Route::prefix('admin')->group(function(){
+    Route::get('dashboard',[Controller::class,'admin_dashboard'])->name('admin.dashboard');
+    Route::get('admin/list',[Controller::class,'admin_list'])->name('admin.list');
 });
