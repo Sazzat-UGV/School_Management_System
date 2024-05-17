@@ -33,5 +33,30 @@
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <script src="{{ asset('assets') }}/dist/js/pages/dashboard.js"></script>
 
+  <!-- sweetalert2-->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- Logout confirmation-->
+  <script>
+      $(document).ready(function() {
+          $('#logout').on('click', function(event) {
+              event.preventDefault();
+              var link = $(this).attr('href');
+              Swal.fire({
+                  title: "Are you sure?",
+                  text: "You won't be able to revert this!",
+                  icon: "warning",
+                  showCancelButton: true,
+                  confirmButtonColor: "#3085d6",
+                  cancelButtonColor: "#d33",
+                  confirmButtonText: "Yes, logout!"
+              }).then((result) => {
+                  if (result.isConfirmed) {
+                      window.location.href = link;
+                  }
+              });
+          });
+      });
+  </script>
 
   @stack('script')
