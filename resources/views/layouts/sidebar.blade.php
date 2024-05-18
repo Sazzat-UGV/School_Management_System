@@ -1,9 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-        <img src="{{ asset('assets') }}/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
-            class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
+    <a href="javascript:;" class="brand-link" style="text-align: center">
+        <span class="brand-text font-weight-light" style="font-weight: bold !important; font-size:20px">School</span>
     </a>
 
     <!-- Sidebar -->
@@ -25,49 +23,59 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
                 @if (Auth::user()->user_type == 'admin')
-                <li class="nav-item">
-                    <a href="{{ route('admin.dashboard') }}" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.list') }}" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
-                        <p>
-                            Admin
-                        </p>
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.dashboard') }}" class="nav-link @if (Request::is('admin/dashboard'))
+active
+                        @endif">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Dashboard
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.list') }}" class="nav-link @if (Request::is('admin/admin/list'))
+                        active
+                                                @endif">
+                            <i class="nav-icon fas fa-user"></i>
+                            <p>
+                                Admin
+                            </p>
+                        </a>
+                    </li>
                 @elseif (Auth::user()->user_type == 'teacher')
-                <li class="nav-item">
-                    <a href="{{ route('teacher.dashboard') }}" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                        </p>
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a href="{{ route('teacher.dashboard') }}" class="nav-link @if (Request::is('teacher/dashboard'))
+                        active
+                                                @endif">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Dashboard
+                            </p>
+                        </a>
+                    </li>
                 @elseif (Auth::user()->user_type == 'student')
-                <li class="nav-item">
-                    <a href="{{ route('student.dashboard') }}" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                        </p>
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a href="{{ route('student.dashboard') }}" class="nav-link @if (Request::is('student/dashboard'))
+                        active
+                                                @endif">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Dashboard
+                            </p>
+                        </a>
+                    </li>
                 @elseif (Auth::user()->user_type == 'parent')
-                <li class="nav-item">
-                    <a href="{{ route('parent.dashboard') }}" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                        </p>
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a href="{{ route('parent.dashboard') }}" class="nav-link @if (Request::is('parent/dashboard'))
+                        active
+                                                @endif">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Dashboard
+                            </p>
+                        </a>
+                    </li>
                 @endif
 
 
