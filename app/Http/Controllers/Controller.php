@@ -14,7 +14,19 @@ class Controller extends BaseController
     {
         return view('admin.dashboard');
     }
-    
+    public function teacher_dashboard()
+    {
+        return view('teacher.dashboard');
+    }
+    public function student_dashboard()
+    {
+        return view('student.dashboard');
+    }
+    public function parent_dashboard()
+    {
+        return view('parent.dashboard');
+    }
+
     public function admin_list()
     {
         return view('admin.admin.list');
