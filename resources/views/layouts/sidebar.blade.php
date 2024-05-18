@@ -15,7 +15,7 @@
                     alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="#" class="d-block">{{ Auth::user()->name }}</a>
             </div>
         </div>
 
@@ -24,7 +24,7 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
-
+                @if (Auth::user()->user_type == 'admin')
                 <li class="nav-item">
                     <a href="{{ route('admin.dashboard') }}" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -33,7 +33,6 @@
                         </p>
                     </a>
                 </li>
-
                 <li class="nav-item">
                     <a href="{{ route('admin.list') }}" class="nav-link">
                         <i class="nav-icon fas fa-user"></i>
@@ -42,6 +41,35 @@
                         </p>
                     </a>
                 </li>
+                @elseif (Auth::user()->user_type == 'teacher')
+                <li class="nav-item">
+                    <a href="{{ route('teacher.dashboard') }}" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Dashboard
+                        </p>
+                    </a>
+                </li>
+                @elseif (Auth::user()->user_type == 'student')
+                <li class="nav-item">
+                    <a href="{{ route('student.dashboard') }}" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Dashboard
+                        </p>
+                    </a>
+                </li>
+                @elseif (Auth::user()->user_type == 'parent')
+                <li class="nav-item">
+                    <a href="{{ route('parent.dashboard') }}" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Dashboard
+                        </p>
+                    </a>
+                </li>
+                @endif
+
 
                 <li class="nav-item">
                     <a href="#" class="nav-link">
