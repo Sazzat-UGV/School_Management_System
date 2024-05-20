@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\auth\AuthController;
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -10,9 +10,9 @@ Route::prefix('/')->group(function () {
     Route::get('', [AuthController::class, 'login_page'])->name('loginPage');
     Route::post('', [AuthController::class, 'login'])->name('login');
 
-    /* forget password routes */
-    Route::get('forget/password', [AuthController::class, 'forget_password_page'])->name('forgetPasswordPage');
-    Route::post('forget/password', [AuthController::class, 'forget_password'])->name('forgetPassword');
+    /* forgot password routes */
+    Route::get('forgot/password', [AuthController::class, 'forgot_password_page'])->name('forgotPasswordPage');
+    Route::post('forgot/password', [AuthController::class, 'forgot_password'])->name('forgotPassword');
 
     /* reset password routes */
     Route::get('reset/password/{token}', [AuthController::class, 'reset_password_page'])->name('resetPasswordPage');
@@ -27,7 +27,9 @@ Route::middleware('auth')->group(function () {
 /* admin routes */
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('admin.dashboard');
-    Route::get('admin/list', [Controller::class, 'admin_list'])->name('admin.list');
+
+    /* resource controller */
+    Route::resource('admin', AdminController::class);
 
 });
 

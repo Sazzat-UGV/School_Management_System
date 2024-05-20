@@ -15,9 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->string('dob')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('user_type',['admin','teacher','student','parent']);
+            $table->string('photo')->default('default_profile.png');
+            $table->boolean('is_deletable')->default('1');
             $table->rememberToken();
             $table->timestamps();
         });

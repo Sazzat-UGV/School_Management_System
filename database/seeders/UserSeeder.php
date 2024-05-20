@@ -15,10 +15,11 @@ class UserSeeder extends Seeder
     {
         // admin user
         User::create([
-            'name' => 'Sazzat',
+            'name' => 'Asikul Islam Sazzat',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('admin@gmail.com'),
             'user_type'=>'admin',
+            'is_deletable'=>0,
         ]);
 
         //teacher user

@@ -1,23 +1,21 @@
- <!-- Google Font: Source Sans Pro -->
- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
- <!-- Font Awesome -->
- <link rel="stylesheet" href="{{ asset('assets') }}/plugins/fontawesome-free/css/all.min.css">
- <!-- Ionicons -->
- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
- <!-- Tempusdominus Bootstrap 4 -->
- <link rel="stylesheet"
-     href="{{ asset('assets') }}/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
- <!-- iCheck -->
- <link rel="stylesheet" href="{{ asset('assets') }}/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
- <!-- JQVMap -->
- <link rel="stylesheet" href="{{ asset('assets') }}/plugins/jqvmap/jqvmap.min.css">
- <!-- Theme style -->
- <link rel="stylesheet" href="{{ asset('assets') }}/dist/css/adminlte.min.css">
- <!-- overlayScrollbars -->
- <link rel="stylesheet" href="{{ asset('assets') }}/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
- <!-- Daterange picker -->
- <link rel="stylesheet" href="{{ asset('assets') }}/plugins/daterangepicker/daterangepicker.css">
- <!-- summernote -->
- <link rel="stylesheet" href="{{ asset('assets') }}/plugins/summernote/summernote-bs4.min.css">
+	<!--favicon-->
+	<link rel="icon" href="{{ asset('assets') }}/images/favicon-32x32.png" type="image/png" />
+	<!--plugins-->
+	<link href="{{ asset('assets') }}/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
+	<link href="{{ asset('assets') }}/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
+	<link href="{{ asset('assets') }}/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
+	<!-- Bootstrap CSS -->
+	<link href="{{ asset('assets') }}/css/bootstrap.min.css" rel="stylesheet">
+	<link href="{{ asset('assets') }}/css/bootstrap-extended.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&amp;display=swap" rel="stylesheet">
+	<link href="{{ asset('assets') }}/css/app.css" rel="stylesheet">
+	<link href="{{ asset('assets') }}/css/icons.css" rel="stylesheet">
+	<!-- Theme Style CSS -->
+	<link rel="stylesheet" href="{{ asset('assets') }}/css/dark-theme.css" />
+	<link rel="stylesheet" href="{{ asset('assets') }}/css/semi-dark.css" />
+	<link rel="stylesheet" href="{{ asset('assets') }}/css/header-colors.css" />
 
- @stack('style')
+    <!-- toastr CSS -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+
+    @stack('style')

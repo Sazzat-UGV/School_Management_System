@@ -5,6 +5,7 @@ namespace App\Http\Controllers\auth;
 use App\Http\Controllers\Controller;
 use App\Mail\ForgotPasswordMail;
 use App\Models\User;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -31,6 +32,11 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string',
+        ]);
+
         $credentials = [
             'email' => $request->email,
             'password' => $request->password,
@@ -48,16 +54,20 @@ class AuthController extends Controller
                 return redirect()->route('parent.dashboard');
             }
         }
-        return redirect()->route('loginPage')->with('error', 'Invalid email or password');
+        Toastr::success('Please check your email or password', 'Invalid credentials');
+        return redirect()->route('loginPage');
     }
 
-    public function forget_password_page()
+    public function forgot_password_page()
     {
-        return view('auth.forget');
+        return view('auth.forgot');
     }
 
-    public function forget_password(Request $request)
+    public function forgot_password(Request $request)
     {
+        $request->validate([
+            'email' => 'required|email',
+        ]);
         $user = User::where('email', $request->email)->first();
 
         if ($user) {
@@ -65,9 +75,11 @@ class AuthController extends Controller
             $user->save();
 
             Mail::to($user->email)->send(new ForgotPasswordMail($user));
-            return back()->with('success', 'A reset link sent to your email address.');
+            Toastr::success('A reset link sent to your email address.', 'Success');
+            return back();
         } else {
-            return back()->with('error', 'Email not found in the system.');
+            Toastr::error('Email not found in the system.', 'Error');
+            return back();
         }
     }
 
@@ -83,14 +95,21 @@ class AuthController extends Controller
 
     public function reset_password(Request $request, $remember_token)
     {
+        $request->validate([
+            'password' => 'required|string|min:6|same:confirm_password',
+            'confirm_password' => 'required|string',
+        ]);
+
         if ($request->password == $request->confirm_password) {
             $user = User::where('remember_token', $remember_token)->first();
             $user->password = Hash::make($request->password);
             $user->remember_token = Str::random(30);
             $user->save();
-            return redirect()->route('loginPage')->with('success', 'Password reset successfully.');
+            Toastr::success('Password reset successfully.', 'Success');
+            return redirect()->route('loginPage');
         } else {
-            return back()->with('error', 'Password and confirm password does not match');
+            Toastr::error('Password and confirm password does not match', 'Error');
+            return back();
         }
     }
 

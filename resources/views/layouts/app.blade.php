@@ -1,36 +1,41 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title')</title>
     @include('layouts.style')
+
+    <title>@yield('title')</title>
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<body>
+    <!--wrapper-->
     <div class="wrapper">
-        <!-- Navbar -->
-        @include('layouts.header')
-        <!-- /.navbar -->
-
-        <!-- Main Sidebar Container -->
+        <!--sidebar wrapper -->
         @include('layouts.sidebar')
-
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Main content -->
-            <section class="content">
-                @yield('content')
-            </section>
-            <!-- /.content -->
+        <!--end sidebar wrapper -->
+        <!--start header -->
+        @include('layouts.header')
+        <!--end header -->
+        <!--start page wrapper -->
+        <div class="page-wrapper">
+            <div class="page-content">
+                @yield('content')<!--end row-->
+            </div>
         </div>
-        <!-- /.content-wrapper -->
+        <!--end page wrapper -->
+        <!--start overlay-->
+        <div class="overlay toggle-icon"></div>
+        <!--end overlay-->
+        <!--Start Back To Top Button-->
+        <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
+        <!--End Back To Top Button-->
         @include('layouts.footer')
-
-        <!-- /.control-sidebar -->
     </div>
-    <!-- ./wrapper -->
+    <!--end wrapper-->
+
 
     @include('layouts.script')
 </body>

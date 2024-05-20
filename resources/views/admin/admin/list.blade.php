@@ -1,74 +1,167 @@
 @extends('layouts.app')
 @section('title')
-    Admin Dashboard
+    Admin List
 @endsection
 @push('style')
+    <style>
+        .wrap {
+            white-space: normal !important;
+            word-wrap: break-word;
+        }
+
+        .btn-group .dropdown-toggle::after {
+            display: none;
+        }
+
+        .btn-group .btn:focus,
+        .btn-group .btn:active {
+            outline: none;
+            box-shadow: none;
+        }
+
+        @media (max-width: 767.98px) {
+            .table thead {
+                display: none;
+            }
+
+            .table,
+            .table tbody,
+            .table tr,
+            .table td {
+                display: block;
+                width: 100%;
+            }
+
+            .table tr {
+                margin-bottom: 1rem;
+            }
+
+            .table td {
+                text-align: right;
+                padding-left: 50%;
+                position: relative;
+            }
+
+            .table td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 0;
+                width: 50%;
+                padding-left: 1rem;
+                text-align: left;
+                font-weight: bold;
+            }
+
+            .table img.user-img {
+                max-width: 100px;
+            }
+        }
+    </style>
 @endpush
 @section('content')
-    @include('layouts.breadcumb', ['page_name' => 'Admin List'])
-    <div class="container-fluid">
+    @include('layouts.breadcrumb', [
+        'main_page_name' => 'Admins',
+        'main_page_url' => route('admin.index'),
+        'sub_page_name' => 'Admin List',
+        'page_btn' =>
+            '<div class="ms-auto">
+                                                        <div class="btn-group"><a href="' .
+            route('admin.create') .
+            '" class="btn btn-primary px-4"><i class="bx bx-plus-circle mr-1"></i>Add Admin</a>
+                                                </div>
+                                                </div>
+                                       </div>',
+    ])
+
+    <div class="page-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="{{ route('admin.index') }}" method="get">
+                            @csrf
+                            <div class="row d-flex align-items-center">
+                                <div class="col-12 col-sm-6 col-md-3 mb-3">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" name="name" class="form-control">
+                                </div>
+                                <div class="col-12 col-sm-6 col-md-3 mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" name="email" class="form-control">
+                                </div>
+                                <div class="col-12 col-sm-6 col-md-3 mb-3">
+                                    <label for="date" class="form-label">Date</label>
+                                    <input type="date" name="date" class="form-control">
+                                </div>
+                                <div class="col-12 col-sm-6 col-md-3 mt-2 d-flex justify-content-end">
+                                    <button type="submit" class="btn btn-primary px-4 me-2">Search</button>
+                                    <button type="reset" class="btn btn-light px-4">Reset</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Striped Full Width Table</h3>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table mb-0 table-hover">
+                                <thead class="table-secondary">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Photo</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Phone</th>
+                                        <th scope="col">Address</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($admins as $index => $admin)
+                                        <tr>
+                                            <td data-label="#"> {{ $index + 1 }} </td>
+                                            <td data-label="Date"> {{ $admin->created_at->format('d-M-Y') }} </td>
+                                            <td data-label="Photo">
+                                                <img style="margin: 0; padding: 0;"
+                                                    src="{{ asset('uploads/profile') }}/{{ $admin->photo }}" alt="image"
+                                                    class="user-img">
+                                            </td>
+                                            <td data-label="Name"> {{ $admin->name }} </td>
+                                            <td data-label="Email"> {{ $admin->email }} </td>
+                                            <td data-label="Phone"> {{ $admin->phone }} </td>
+                                            <td data-label="Address"> {{ $admin->address }} </td>
+                                            <td data-label="Action">
+                                                <div class="d-flex order-actions">
+                                                    <a href="{{ route('admin.edit', ['admin' => $admin->id]) }}"
+                                                        class="bg-warning p-1">
+                                                        <i class="bx bxs-edit"></i>
+                                                    </a>
+                                                    <form action="{{ route('admin.destroy', ['admin' => $admin->id]) }}"
+                                                        method="POST" class="m-0 ms-3 show_confirm">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                            class="bg-transparent border-0 px-2 py-1 bg-danger rounded">
+                                                            <i class="bx bxs-trash" style="font-size: 16px"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mt-3">
+                            {{ $admins->links() }}
+                        </div>
                     </div>
-                    <!-- /.card-header -->
-                    <div class="card-body p-0">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th style="width: 10px">#</th>
-                                    <th>Task</th>
-                                    <th>Progress</th>
-                                    <th style="width: 40px">Label</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1.</td>
-                                    <td>Update software</td>
-                                    <td>
-                                        <div class="progress progress-xs">
-                                            <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                                        </div>
-                                    </td>
-                                    <td><span class="badge bg-danger">55%</span></td>
-                                </tr>
-                                <tr>
-                                    <td>2.</td>
-                                    <td>Clean database</td>
-                                    <td>
-                                        <div class="progress progress-xs">
-                                            <div class="progress-bar bg-warning" style="width: 70%"></div>
-                                        </div>
-                                    </td>
-                                    <td><span class="badge bg-warning">70%</span></td>
-                                </tr>
-                                <tr>
-                                    <td>3.</td>
-                                    <td>Cron job running</td>
-                                    <td>
-                                        <div class="progress progress-xs progress-striped active">
-                                            <div class="progress-bar bg-primary" style="width: 30%"></div>
-                                        </div>
-                                    </td>
-                                    <td><span class="badge bg-primary">30%</span></td>
-                                </tr>
-                                <tr>
-                                    <td>4.</td>
-                                    <td>Fix and squish bugs</td>
-                                    <td>
-                                        <div class="progress progress-xs progress-striped active">
-                                            <div class="progress-bar bg-success" style="width: 90%"></div>
-                                        </div>
-                                    </td>
-                                    <td><span class="badge bg-success">90%</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- /.card-body -->
                 </div>
             </div>
         </div>
@@ -76,4 +169,34 @@
 @endsection
 
 @push('script')
+    <script>
+        $(document).ready(function() {
+            $('.show_confirm').on('click', function(event) {
+                event.preventDefault();
+                let form = $(this).closest('form');
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                        });
+                        form.submit();
+                    } else {
+                        Swal.fire({
+                            title: "Canceled!",
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 @endpush
