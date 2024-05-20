@@ -30,7 +30,7 @@ class AdminController extends Controller
             $admins = $admins->whereDate('created_at', $request->date);
         }
 
-        $admins = $admins->latest('id')->paginate(10);
+        $admins = $admins->latest('id')->paginate(20);
 
         return view('admin.admin.list', compact('admins'));
     }

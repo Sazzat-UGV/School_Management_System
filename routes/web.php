@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SchoolClassController;
 use Illuminate\Support\Facades\Route;
 
 /* login routes */
@@ -30,6 +31,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 
     /* resource controller */
     Route::resource('admin', AdminController::class);
+    Route::resource('class', SchoolClassController::class);
 
 });
 

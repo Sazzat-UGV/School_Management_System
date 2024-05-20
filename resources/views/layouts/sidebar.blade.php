@@ -19,6 +19,20 @@
                     <div class="menu-title">Dashboard</div>
                 </a>
             </li>
+            
+            <li>
+                <a href="javascript:;" class="has-arrow">
+                    <div class="parent-icon"><i class='bx bx-chalkboard'></i>
+                    </div>
+                    <div class="menu-title">Classes</div>
+                </a>
+                <ul>
+                    <li> <a href="{{ route('class.index') }}"><i class='bx bx-radio-circle'></i>Class List</a>
+                    </li>
+                    <li> <a href="{{ route('class.create') }}"><i class='bx bx-radio-circle'></i>Add Class</a>
+                    </li>
+                </ul>
+            </li>
 
             <li>
                 <a href="javascript:;" class="has-arrow">
@@ -33,6 +47,7 @@
                     </li>
                 </ul>
             </li>
+
         @endif
 
         @if (Auth::user()->user_type == 'teacher')
