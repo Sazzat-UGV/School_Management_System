@@ -92,7 +92,7 @@
                     <li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
                                 class="bx bx-user fs-5"></i><span>My Profile</span></a>
                     </li>
-                    <li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
+                    <li><a class="dropdown-item d-flex align-items-center" href="{{ route('changePasswordPage') }}"><i
                                 class="bx bx-cog fs-5"></i><span>Change Password</span></a>
                     </li>
 

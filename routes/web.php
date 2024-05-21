@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\ClassSubjectController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SchoolClassController;
 use App\Http\Controllers\SubjectController;
 use Illuminate\Support\Facades\Route;
@@ -22,9 +23,14 @@ Route::prefix('/')->group(function () {
     Route::post('reset/password/{token}', [AuthController::class, 'reset_password'])->name('resetPassword');
 });
 
-/* logout routes */
+/* common routes */
 Route::middleware('auth')->group(function () {
+    /* logout routes */
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
+    /* change password routes */
+    Route::get('change/password', [ProfileController::class, 'change_password_page'])->name('changePasswordPage');
+    Route::post('change/password', [ProfileController::class, 'change_password'])->name('changePassword');
 });
 
 /* admin routes */
