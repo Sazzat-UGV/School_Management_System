@@ -49,6 +49,20 @@
 
             <li>
                 <a href="javascript:;" class="has-arrow">
+                    <div class="parent-icon"><i class='bx bx-book-add'></i>
+                    </div>
+                    <div class="menu-title">Assign Subject</div>
+                </a>
+                <ul>
+                    <li> <a href="{{ route('assign.index') }}"><i class='bx bx-radio-circle'></i>Assign List</a>
+                    </li>
+                    <li> <a href="{{ route('assign.create') }}"><i class='bx bx-radio-circle'></i>Assign New </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="javascript:;" class="has-arrow">
                     <div class="parent-icon"><i class='bx bx-user-circle'></i>
                     </div>
                     <div class="menu-title">Admins</div>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-Subject Class
+Add Subject
 @endsection
 @push('style')
 @endpush

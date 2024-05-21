@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\auth\AuthController;
+use App\Http\Controllers\ClassSubjectController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SchoolClassController;
 use App\Http\Controllers\SubjectController;
@@ -34,6 +35,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('admin', AdminController::class);
     Route::resource('class', SchoolClassController::class);
     Route::resource('subject', SubjectController::class);
+    Route::resource('assign', ClassSubjectController::class);
 });
 
 /* teacher routes */
