@@ -22,6 +22,34 @@
 
             <li>
                 <a href="javascript:;" class="has-arrow">
+                    <div class="parent-icon"><i class='bx bx-user-circle'></i>
+                    </div>
+                    <div class="menu-title">Admins</div>
+                </a>
+                <ul>
+                    <li> <a href="{{ route('admin.index') }}"><i class='bx bx-radio-circle'></i>Admin List</a>
+                    </li>
+                    <li> <a href="{{ route('admin.create') }}"><i class='bx bx-radio-circle'></i>Add Admin</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="javascript:;" class="has-arrow">
+                    <div class="parent-icon"><i class='bx bx-user-circle'></i>
+                    </div>
+                    <div class="menu-title">Students</div>
+                </a>
+                <ul>
+                    <li> <a href="{{ route('student.index') }}"><i class='bx bx-radio-circle'></i>Student List</a>
+                    </li>
+                    <li> <a href="{{ route('student.create') }}"><i class='bx bx-radio-circle'></i>Add Student</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="javascript:;" class="has-arrow">
                     <div class="parent-icon"><i class='bx bx-chalkboard'></i>
                     </div>
                     <div class="menu-title">Classes</div>
@@ -57,20 +85,6 @@
                     <li> <a href="{{ route('assign.index') }}"><i class='bx bx-radio-circle'></i>Assign List</a>
                     </li>
                     <li> <a href="{{ route('assign.create') }}"><i class='bx bx-radio-circle'></i>Assign New </a>
-                    </li>
-                </ul>
-            </li>
-
-            <li>
-                <a href="javascript:;" class="has-arrow">
-                    <div class="parent-icon"><i class='bx bx-user-circle'></i>
-                    </div>
-                    <div class="menu-title">Admins</div>
-                </a>
-                <ul>
-                    <li> <a href="{{ route('admin.index') }}"><i class='bx bx-radio-circle'></i>Admin List</a>
-                    </li>
-                    <li> <a href="{{ route('admin.create') }}"><i class='bx bx-radio-circle'></i>Add Admin</a>
                     </li>
                 </ul>
             </li>
