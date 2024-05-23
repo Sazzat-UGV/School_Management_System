@@ -50,6 +50,20 @@
 
             <li>
                 <a href="javascript:;" class="has-arrow">
+                    <div class="parent-icon"><i class='bx bx-user-circle'></i>
+                    </div>
+                    <div class="menu-title">Parents</div>
+                </a>
+                <ul>
+                    <li> <a href="{{ route('parent.index') }}"><i class='bx bx-radio-circle'></i>Parent List</a>
+                    </li>
+                    <li> <a href="{{ route('parent.create') }}"><i class='bx bx-radio-circle'></i>Add Parent</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="javascript:;" class="has-arrow">
                     <div class="parent-icon"><i class='bx bx-chalkboard'></i>
                     </div>
                     <div class="menu-title">Classes</div>

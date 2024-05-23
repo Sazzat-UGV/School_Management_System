@@ -125,9 +125,6 @@ class StudentController extends Controller
         return redirect()->route('student.index');
     }
 
-    // $table->string('email')->unique();
-    // $table->string('password');
-    // $table->string('photo')->default('default_profile.png');
     /**
      * Display the specified resource.
      */

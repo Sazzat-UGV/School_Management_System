@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('dob')->nullable();
             $table->string('caste')->nullable();
             $table->string('religion')->nullable();
+            $table->string('occupation')->nullable();
             $table->string('admission_date')->nullable();
             $table->enum('blood_group',['A-', 'A+', 'B-', 'B+', 'AB-', 'AB+', 'O-','O+'])->nullable();
             $table->string('height')->nullable();

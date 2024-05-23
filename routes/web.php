@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\ClassSubjectController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ParentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SchoolClassController;
 use App\Http\Controllers\StudentController;
@@ -44,6 +45,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('subject', SubjectController::class);
     Route::resource('assign', ClassSubjectController::class);
     Route::resource('student', StudentController::class);
+    Route::resource('parent', ParentController::class);
 });
 
 /* teacher routes */
