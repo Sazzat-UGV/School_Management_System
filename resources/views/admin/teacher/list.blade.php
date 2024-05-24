@@ -103,14 +103,6 @@ Teacher List
                                     </select>
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-2 mb-3">
-                                    <label for="occupation" class="form-label">Occupation</label>
-                                    <input type="text" name="occupation" class="form-control">
-                                </div>
-                                <div class="col-12 col-sm-6 col-md-2 mb-3">
-                                    <label for="address" class="form-label">Current Address</label>
-                                    <input type="text" name="address" class="form-control">
-                                </div>
-                                <div class="col-12 col-sm-6 col-md-2 mb-3">
                                     <label for="phone" class="form-label">Mobile Number</label>
                                     <input type="text" name="phone" class="form-control">
                                 </div>
@@ -118,6 +110,11 @@ Teacher List
                                     <label for="marital_status" class="form-label">Marital Status</label>
                                     <input type="text" name="marital_status" class="form-control">
                                 </div>
+                                <div class="col-12 col-sm-6 col-md-2 mb-3">
+                                    <label for="address" class="form-label">Current Address</label>
+                                    <input type="text" name="address" class="form-control">
+                                </div>
+
                                 <div class="col-12 col-sm-6 col-md-2 mb-3">
                                     <label for="date_of_joining" class="form-label">Date of Joining</label>
                                     <input type="date" name="date_of_joining" class="form-control">

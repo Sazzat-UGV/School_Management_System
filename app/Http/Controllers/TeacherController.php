@@ -29,14 +29,17 @@ class TeacherController extends Controller
         if ($request->gender) {
             $teachers = $teachers->where('gender', $request->gender);
         }
-        if ($request->occupation) {
-            $teachers = $teachers->where('occupation', 'LIKE', '%' . $request->occupation . '%');
+        if ($request->marital_status) {
+            $teachers = $teachers->where('marital_status', 'LIKE', '%' . $request->marital_status . '%');
         }
         if ($request->address) {
             $teachers = $teachers->where('address', 'LIKE', '%' . $request->address . '%');
         }
         if ($request->phone) {
             $teachers = $teachers->where('phone', 'LIKE', '%' . $request->phone . '%');
+        }
+        if ($request->date_of_joining) {
+            $teachers = $teachers->where('date_of_joining', 'LIKE', '%' . $request->date_of_joining . '%');
         }
         if ($request->status) {
             $teachers = $teachers->where('status', $request->status);
@@ -137,7 +140,7 @@ class TeacherController extends Controller
             'qualification' => 'required|string|max:255',
             'work_experience' => 'required|string|max:255',
             'note' => 'nullable|string|max:2000',
-            'email' => 'required|email|max:255|unique:users,email,'.$teacher->id,
+            'email' => 'required|email|max:255|unique:users,email,' . $teacher->id,
             'password' => 'nullable|string',
             'photo' => 'nullable|mimes:png,jpg|max:10240',
         ]);
