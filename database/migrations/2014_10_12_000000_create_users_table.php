@@ -36,6 +36,12 @@ return new class extends Migration
             $table->string('weight')->nullable();
             $table->string('last_name')->nullable();
             $table->boolean('status')->default(true);
+            $table->string('date_of_joining')->nullable();
+            $table->string('marital_status')->nullable();
+            $table->string('permanent_address')->nullable();
+            $table->string('qualification')->nullable();
+            $table->string('work_experience')->nullable();
+            $table->longText('note')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

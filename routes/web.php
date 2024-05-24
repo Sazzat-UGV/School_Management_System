@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SchoolClassController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 
 /* login routes */
@@ -46,6 +47,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('assign', ClassSubjectController::class);
     Route::resource('student', StudentController::class);
     Route::resource('parent', ParentController::class);
+    Route::resource('teacher', TeacherController::class);
 });
 
 /* teacher routes */
