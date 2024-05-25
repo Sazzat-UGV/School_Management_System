@@ -42,9 +42,9 @@ class ProfileController extends Controller
         return view('teacher.profile');
     }
 
-    public function teacher_profile_update(Request $request ,$id)
+    public function teacher_profile_update(Request $request)
     {
-        $user = User::findOrFail($id);
+        $user = User::findOrFail(Auth::user()->id);
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -57,7 +57,7 @@ class ProfileController extends Controller
             'qualification' => 'required|string|max:255',
             'work_experience' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users,email,' . $user->id,
-            'photo' => 'required|mimes:png,jpg|max:10240',
+            'photo' => 'nullable|mimes:png,jpg|max:10240',
         ]);
         $user->update([
             'name' => $request->first_name,
@@ -70,6 +70,45 @@ class ProfileController extends Controller
             'permanent_address' => $request->permanent_address,
             'qualification' => $request->qualification,
             'work_experience' => $request->work_experience,
+            'email' => $request->email,
+        ]);
+        $this->image_upload($request, $user->id);
+        Toastr::success('Profile update successfully!', 'Success');
+        return redirect()->back();
+    }
+
+    public function student_profile_page()
+    {
+        return view('student.profile');
+    }
+    public function student_profile_update(Request $request)
+    {
+        $user = User::findOrFail(Auth::user()->id);
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'gender' => 'required|string|max:255',
+            'date_of_birth' => 'required|date',
+            'caste' => 'nullable|string|max:255',
+            'religion' => 'required|string|max:255',
+            'mobile_number' => 'required|string|max:20',
+            'blood_group' => 'nullable|string|max:3',
+            'height' => 'nullable|string|max:10',
+            'weight' => 'nullable|string|max:10',
+            'email' => 'required|email|max:255|unique:users,email,' . $user->id,
+            'photo' => 'nullable|mimes:png,jpg|max:10240',
+        ]);
+        $user->update([
+            'name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'gender' => $request->gender,
+            'dob' => $request->date_of_birth,
+            'caste' => $request->caste,
+            'religion' => $request->religion,
+            'phone' => $request->mobile_number,
+            'blood_group' => $request->blood_group,
+            'height' => $request->height,
+            'weight' => $request->weight,
             'email' => $request->email,
         ]);
         $this->image_upload($request, $user->id);

@@ -56,13 +56,16 @@ Route::prefix('teacher')->middleware(['auth', 'teacher'])->group(function () {
 
     /* profile routes */
     Route::get('my_profile', [ProfileController::class, 'teacher_profile_page'])->name('teacherProfilePage');
-    Route::put('my_profile/{id}', [ProfileController::class, 'teacher_profile_update'])->name('teacherProfileUpdate');
+    Route::post('my_profile', [ProfileController::class, 'teacher_profile_update'])->name('teacherProfileUpdate');
 });
 
 /* student routes */
 Route::prefix('student')->middleware(['auth', 'student'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('student.dashboard');
 
+    /* profile routes */
+    Route::get('my_profile', [ProfileController::class, 'student_profile_page'])->name('studentProfilePage');
+    Route::post('my_profile', [ProfileController::class, 'student_profile_update'])->name('studentProfileUpdate');
 });
 
 /* parent routes */

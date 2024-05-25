@@ -20,14 +20,13 @@
         'sub_page_name' => 'My Profile',
         'page_btn' => '',
     ])
-
     <div class="row">
         <div class="col-12 mx-auto">
 
             <div class="card">
                 <div class="card-body p-4">
-                    <form action="{{ route('teacherProfileUpdate') }}" method="POST" class="row g-3"
-                        enctype="multipart/form-data">
+                    <form action="{{ route('studentProfileUpdate') }}" method="POST"
+                        class="row g-3" enctype="multipart/form-data">
                         @csrf
                         <div class="col-md-6">
                             <label for="first_name" class="form-label">First Name<span class="text-danger">*</span></label>
@@ -53,15 +52,15 @@
                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                             @enderror
                         </div>
-                        <div class="col-md-4">
+
+
+                        <div class="col-md-3">
                             <label for="gender" class="form-label">Gender<span class="text-danger">*</span></label>
                             <select
                                 class="form-select mb-3  @error('gender')
                             is-invalid
                             @enderror"
                                 aria-label="Default select example" name="gender">
-                                <option value="" @if (old('') == '') selected @endif>Select Gender
-                                </option>
                                 <option value="Male" @if (old('gender', Auth::user()->gender) == 'Male') selected @endif>Male</option>
                                 <option value="Female" @if (old('gender', Auth::user()->gender) == 'Female') selected @endif>Female</option>
                             </select>
@@ -69,20 +68,33 @@
                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                             @enderror
                         </div>
-                        <div class="col-md-4">
+
+                        <div class="col-md-3">
                             <label for="date_of_birth" class="form-label">Date of Birth<span
                                     class="text-danger">*</span></label>
                             <input type="date" name="date_of_birth"
-                                class="form-control  @error('date_of_birth')
+                                class="form-control @error('date_of_birth')
                             is-invalid
-                        @enderror"
-                                id="date_of_birth" placeholder="Enter date of birth"
+                        @enderror "
+                                id="date_of_birth" placeholder="Date of Birth"
                                 value="{{ old('date_of_birth', Auth::user()->dob) }}">
                             @error('date_of_birth')
                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                             @enderror
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
+                            <label for="religion" class="form-label">Religion<span class="text-danger">*</span></label>
+                            <input type="text" name="religion"
+                                class="form-control  @error('religion')
+                            is-invalid
+                        @enderror"
+                                id="religion" placeholder="Enter religion"
+                                value="{{ old('religion', Auth::user()->religion) }}">
+                            @error('religion')
+                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                            @enderror
+                        </div>
+                        <div class="col-md-3">
                             <label for="mobile_number" class="form-label">Mobile Number<span
                                     class="text-danger">*</span></label>
                             <input type="text" name="mobile_number"
@@ -96,20 +108,64 @@
                             @enderror
                         </div>
                         <div class="col-md-6">
-                            <label for="marital_status" class="form-label">Marital Status<span
-                                    class="text-danger">*</span></label>
-                            <input type="text" name="marital_status"
-                                class="form-control  @error('marital_status')
+                            <label for="caste" class="form-label">Caste</label>
+                            <input type="text" name="caste"
+                                class="form-control  @error('caste')
                             is-invalid
                         @enderror"
-                                id="marital_status" placeholder="Enter marital status"
-                                value="{{ old('marital_status', Auth::user()->marital_status) }}">
-                            @error('marital_status')
+                                id="caste" placeholder="Enter caste" value="{{ old('caste', Auth::user()->caste) }}">
+                            @error('caste')
                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                             @enderror
                         </div>
 
                         <div class="col-md-6">
+                            <label for="blood_group" class="form-label">Blood Group</label>
+                            <select
+                                class="form-select mb-3  @error('blood_group')
+                            is-invalid
+                            @enderror"
+                                aria-label="Default select example" name="blood_group">
+                                <option value="A+" @if (old('blood_group', Auth::user()->blood_group) == 'A+') selected @endif>A+</option>
+                                <option value="A-" @if (old('blood_group', Auth::user()->blood_group) == 'A-') selected @endif>A-</option>
+                                <option value="B+" @if (old('blood_group', Auth::user()->blood_group) == 'B+') selected @endif>B+</option>
+                                <option value="B-" @if (old('blood_group', Auth::user()->blood_group) == 'B-') selected @endif>B-</option>
+                                <option value="O+" @if (old('blood_group', Auth::user()->blood_group) == 'O+') selected @endif>O+</option>
+                                <option value="O-" @if (old('blood_group', Auth::user()->blood_group) == 'O-') selected @endif>O-</option>
+                                <option value="AB+" @if (old('blood_group', Auth::user()->blood_group) == 'AB+') selected @endif>AB+</option>
+                                <option value="AB-" @if (old('blood_group', Auth::user()->blood_group) == 'AB-') selected @endif>AB+</option>
+                            </select>
+                            @error('blood_group')
+                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                            @enderror
+                        </div>
+                        <div class="col-md-4">
+                            <label for="height" class="form-label">Height</label>
+                            <input type="text" name="height"
+                                class="form-control  @error('height')
+                            is-invalid
+                        @enderror"
+                                id="height" placeholder="Enter height"
+                                value="{{ old('height', Auth::user()->height) }}">
+                            @error('height')
+                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                            @enderror
+                        </div>
+                        <div class="col-md-4">
+                            <label for="weight" class="form-label">Weight</label>
+                            <input type="text" name="weight"
+                                class="form-control  @error('weight')
+                            is-invalid
+                        @enderror"
+                                id="weight" placeholder="Enter weight"
+                                value="{{ old('weight', Auth::user()->weight) }}">
+                            @error('weight')
+                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                            @enderror
+                        </div>
+
+
+                        <div class="col-md-4">
                             <label for="email" class="form-label">Email<span class="text-danger">*</span></label>
                             <input type="email" name="email"
                                 class="form-control @error('email')
@@ -121,70 +177,18 @@
                             @enderror
                         </div>
 
-                        <div class="col-md-6">
-                            <label for="current_address" class="form-label">Current Address<span
-                                    class="text-danger">*</span></label>
-                            <textarea name="current_address"
-                                class="form-control @error('current_address')
-                            is-invalid
-                        @enderror"
-                                cols="30" rows="3" id="current_address" placeholder="Enter current address">{{ old('current_address', Auth::user()->address) }}</textarea>
-                            @error('current_address')
-                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                            @enderror
-                        </div>
-                        <div class="col-md-6">
-                            <label for="permanent_address" class="form-label">Permanent Address<span
-                                    class="text-danger">*</span></label>
-                            <textarea name="permanent_address"
-                                class="form-control @error('permanent_address')
-                            is-invalid
-                        @enderror"
-                                cols="30" rows="3" id="permanent_address" placeholder="Enter permanent address">{{ old('permanent_address', Auth::user()->permanent_address) }}</textarea>
-                            @error('permanent_address')
-                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                            @enderror
-                        </div>
-                        <div class="col-md-6">
-                            <label for="qualification" class="form-label">Qualification<span
-                                    class="text-danger">*</span></label>
-                            <textarea name="qualification"
-                                class="form-control @error('qualification')
-                            is-invalid
-                        @enderror"
-                                cols="30" rows="3" id="qualification" placeholder="Enter qualification">{{ old('qualification', Auth::user()->qualification) }}</textarea>
-                            @error('qualification')
-                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                            @enderror
-                        </div>
-                        <div class="col-md-6">
-                            <label for="work_experience" class="form-label">Work Experience<span
-                                    class="text-danger">*</span></label>
-                            <textarea name="work_experience"
-                                class="form-control @error('work_experience')
-                            is-invalid
-                        @enderror"
-                                cols="30" rows="3" id="work_experience" placeholder="Enter work experience">{{ old('work_experience', Auth::user()->work_experience) }}</textarea>
-                            @error('work_experience')
-                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                            @enderror
-                        </div>
-
-
-
                         <div class="col-12">
                             <label for="photo" class="form-label">Photo</label>
                             <input type="file" name="photo"
-                                data-default-file="{{ asset('uploads/profile') }}/{{ Auth::user()->photo }}"
                                 class="form-control dropify @error('photo')
                             is-invalid
                         @enderror"
-                                id="photo" placeholder="Enter photo">
+                                id="photo" placeholder="Enter photo"
+                                data-default-file="{{ asset('uploads/profile') }}/{{ Auth::user()->photo }}">
                             @error('photo')
                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                             @enderror
                         </div>
-
 
                         <div class="col-md-12">
                             <div class="d-md-flex d-grid align-items-center gap-3">

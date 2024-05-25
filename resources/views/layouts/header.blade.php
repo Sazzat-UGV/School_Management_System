@@ -91,7 +91,11 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item d-flex align-items-center"
-                            href="@if (Auth::user()->user_type == 'teacher') {{ route('teacherProfilePage') }} @endif"><i
+                            href="@if (Auth::user()->user_type == 'teacher')
+                             {{ route('teacherProfilePage') }}
+                            @elseif (Auth::user()->user_type=='student')
+                            {{ route('studentProfilePage') }}
+                            @endif"><i
                                 class="bx bx-user fs-5"></i><span>My Profile</span></a>
                     </li>
                     <li><a class="dropdown-item d-flex align-items-center" href="{{ route('changePasswordPage') }}"><i

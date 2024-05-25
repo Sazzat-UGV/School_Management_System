@@ -99,7 +99,6 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                             is-invalid
                             @enderror"
                                 aria-label="Default select example" name="gender">
-                                <option value="" @if (old('') == '') selected @endif>Select Gender</option>
                                 <option value="Male" @if (old('gender',$student->gender) == 'Male') selected @endif>Male</option>
                                 <option value="Female" @if (old('gender',$student->gender) == 'Female') selected @endif>Female</option>
                             </select>
@@ -170,7 +169,6 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                             is-invalid
                             @enderror"
                                 aria-label="Default select example" name="blood_group">
-                                <option value="" @if (old('') == '') selected @endif>Select Blood Group</option>
                                 <option value="A+" @if (old('blood_group',$student->blood_group) == 'A+') selected @endif>A+</option>
                                 <option value="A-" @if (old('blood_group',$student->blood_group) == 'A-') selected @endif>A-</option>
                                 <option value="B+" @if (old('blood_group',$student->blood_group) == 'B+') selected @endif>B+</option>
