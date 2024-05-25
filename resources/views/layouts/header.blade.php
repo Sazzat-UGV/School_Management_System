@@ -82,14 +82,16 @@
             <div class="user-box dropdown px-3">
                 <a class="d-flex align-items-center nav-link dropdown-toggle gap-3 dropdown-toggle-nocaret"
                     href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="{{ asset('uploads/profile') }}/{{Auth::user()->photo}}" class="user-img" alt="user avatar">
+                    <img src="{{ asset('uploads/profile') }}/{{ Auth::user()->photo }}" class="user-img"
+                        alt="user avatar">
                     <div class="user-info">
                         <p class="user-name mb-0">{{ Auth::user()->name }}</p>
                         <p class="designattion mb-0">{{ Auth::user()->user_type }}</p>
                     </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
+                    <li><a class="dropdown-item d-flex align-items-center"
+                            href="@if (Auth::user()->user_type == 'teacher') {{ route('teacherProfilePage') }} @endif"><i
                                 class="bx bx-user fs-5"></i><span>My Profile</span></a>
                     </li>
                     <li><a class="dropdown-item d-flex align-items-center" href="{{ route('changePasswordPage') }}"><i

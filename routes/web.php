@@ -54,6 +54,9 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 Route::prefix('teacher')->middleware(['auth', 'teacher'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('teacher.dashboard');
 
+    /* profile routes */
+    Route::get('my_profile', [ProfileController::class, 'teacher_profile_page'])->name('teacherProfilePage');
+    Route::put('my_profile/{id}', [ProfileController::class, 'teacher_profile_update'])->name('teacherProfileUpdate');
 });
 
 /* student routes */
