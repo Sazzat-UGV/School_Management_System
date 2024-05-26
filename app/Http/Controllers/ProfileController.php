@@ -148,6 +148,32 @@ class ProfileController extends Controller
         return redirect()->back();
     }
 
+    public function admin_profile_page(){
+        return view('admin.profile');
+    }
+    public function admin_profile_update(Request $request){
+        $user = User::findOrFail(Auth::user()->id);
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $user->id,
+            'phone' => 'required|string|max:15',
+            'address' => 'required|string|max:255',
+            'dob' => 'nullable|date',
+            'photo' => 'nullable|mimes:png,jpg|max:10240',
+        ]);
+
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'dob' => $request->dob,
+        ]);
+        $this->image_upload($request, $user->id);
+        Toastr::success('Profile update successfully!', 'Success');
+        return redirect()->back();
+    }
+
     public function image_upload($request, $user_id)
     {
         $user = User::findorFail($user_id);

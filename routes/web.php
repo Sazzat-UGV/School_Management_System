@@ -48,6 +48,10 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('student', StudentController::class);
     Route::resource('parent', ParentController::class);
     Route::resource('teacher', TeacherController::class);
+
+    /* profile routes */
+    Route::get('my_profile', [ProfileController::class, 'admin_profile_page'])->name('adminProfilePage');
+    Route::post('my_profile', [ProfileController::class, 'admin_profile_update'])->name('adminProfileUpdate');
 });
 
 /* teacher routes */
