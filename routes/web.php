@@ -72,4 +72,7 @@ Route::prefix('student')->middleware(['auth', 'student'])->group(function () {
 Route::prefix('parent')->middleware(['auth', 'parent'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('parent.dashboard');
 
+    /* profile routes */
+    Route::get('my_profile', [ProfileController::class, 'parent_profile_page'])->name('parentProfilePage');
+    Route::post('my_profile', [ProfileController::class, 'parent_profile_update'])->name('parentProfileUpdate');
 });

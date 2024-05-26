@@ -116,6 +116,38 @@ class ProfileController extends Controller
         return redirect()->back();
     }
 
+    public function parent_profile_page()
+    {
+        return view('parent.profile');
+    }
+
+    public function parent_profile_update(Request $request)
+    {
+        $user = User::findOrFail(Auth::user()->id);
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'nullable|string|max:255',
+            'occupation' => 'nullable|max:255',
+            'gender' => 'required|string|max:255',
+            'mobile_number' => 'required|string|max:20',
+            'address' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $user->id,
+            'photo' => 'nullable|mimes:png,jpg|max:10240',
+        ]);
+        $user->update([
+            'name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'occupation' => $request->occupation,
+            'gender' => $request->gender,
+            'phone' => $request->mobile_number,
+            'address' => $request->address,
+            'email' => $request->email,
+        ]);
+        $this->image_upload($request, $user->id);
+        Toastr::success('Profile update successfully!', 'Success');
+        return redirect()->back();
+    }
+
     public function image_upload($request, $user_id)
     {
         $user = User::findorFail($user_id);

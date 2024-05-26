@@ -95,6 +95,8 @@
                              {{ route('teacherProfilePage') }}
                             @elseif (Auth::user()->user_type=='student')
                             {{ route('studentProfilePage') }}
+                            @elseif (Auth::user()->user_type=='parent')
+                            {{ route('parentProfilePage') }}
                             @endif"><i
                                 class="bx bx-user fs-5"></i><span>My Profile</span></a>
                     </li>
